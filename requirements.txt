@@ -1,0 +1,37 @@
+Lost & Found Frontend (React + Vite + JSX) - Setup Requirements
+
+1) Prerequisites
+- Node.js 18+ (recommended: Node.js 20 LTS)
+- npm 9+ (comes with Node)
+- Backend API running at: http://127.0.0.1:8000/api/
+
+2) Install frontend dependencies
+- In project root, run:
+  npm install
+
+3) Run the app (development)
+- Start dev server:
+  npm run dev
+- Open the URL shown in terminal (usually http://localhost:8080)
+
+4) Build and preview
+- Production build:
+  npm run build
+- Preview build:
+  npm run preview
+
+5) Notes for this project
+- Project is fully JSX-based (no TSX required for runtime)
+- Tailwind CSS scans JS/JSX files for class generation
+- Main API client is in: src/lib/api.js
+- API base URL is currently hardcoded to:
+  http://127.0.0.1:8000/api
+
+6) Backend readiness checklist
+- Ensure Django server is running
+- Ensure CORS allows frontend origin (e.g. localhost:8080)
+- Ensure endpoints are available:
+  /users/register/, /users/login/, /users/logout/
+  /items/, /items/{id}/suggested_matches/
+  /claims/, /claims/{id}/approve/, /claims/{id}/reject/
+  /messages/, /notifications/, /notifications/{id}/mark_read/
