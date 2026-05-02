@@ -3,7 +3,7 @@ Lost & Found Frontend (React + Vite + JSX) - Setup Requirements
 1) Prerequisites
 - Node.js 18+ (recommended: Node.js 20 LTS)
 - npm 9+ (comes with Node)
-- Backend API running at: http://127.0.0.1:8000/api/
+- Backend API running at: https://nyasha.pythonanywhere.com/api/
 
 2) Install frontend dependencies
 - In project root, run:
@@ -25,7 +25,7 @@ Lost & Found Frontend (React + Vite + JSX) - Setup Requirements
 - Tailwind CSS scans JS/JSX files for class generation
 - Main API client is in: src/lib/api.js
 - API base URL is currently hardcoded to:
-  http://127.0.0.1:8000/api
+  https://nyasha.pythonanywhere.com/api
 
 6) Backend readiness checklist
 - Ensure Django server is running
