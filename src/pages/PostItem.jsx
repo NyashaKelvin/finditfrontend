@@ -2,7 +2,7 @@ import { useState } from "react";
 import Spinner from "@/components/Spinner";
 import { useNavigate } from "react-router-dom";
 import { createItem } from "@/lib/api";
-import { Upload, ChevronLeft } from "lucide-react";
+import { Upload, ChevronLeft, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
 const PostItem = () => {
@@ -121,7 +121,7 @@ const PostItem = () => {
         </div>
 
         <button type="submit" className="btn-primary w-full py-4 text-base font-bold shadow-lg shadow-primary/20" disabled={loading}>
-          {loading ? <><Spinner className="inline py-0 mr-2 h-5 w-5" /> Posting...</> : "Submit Post"}
+          {loading ? <><Loader2 className="inline mr-2 h-5 w-5 animate-spin" /> Posting...</> : "Submit Post"}
         </button>
       </form>
     </div>

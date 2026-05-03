@@ -114,7 +114,7 @@ const Home = () => {
             {[
               { label: "Lost Items", value: stats.total_lost, icon: <Search className="text-destructive" />, color: "border-destructive/20", bg: "bg-destructive/5", path: "/dashboard?tab=LOST" },
               { label: "Found Items", value: stats.total_found, icon: <ShieldCheck className="text-success" />, color: "border-success/20", bg: "bg-success/5", path: "/dashboard?tab=FOUND" },
-              { label: "Recovered Total", value: stats.total_items, icon: <Package className="text-primary" />, color: "border-primary/20", bg: "bg-primary/5", path: "/dashboard" }
+              { label: "Recovered Total", value: stats.successfully_returned || 0, icon: <Package className="text-primary" />, color: "border-primary/20", bg: "bg-primary/5", path: "/dashboard" }
             ].map((s) => (
               <div 
                 key={s.label} 
