@@ -28,6 +28,7 @@ api.interceptors.response.use(
 export const registerUser = (data) => api.post("/users/register/", data);
 export const loginUser = (data) => api.post("/users/login/", data);
 export const logoutUser = () => api.post("/users/logout/");
+export const googleLogin = (accessToken) => api.post("/users/auth/google/", { access_token: accessToken });
 
 export const getItems = (params) => api.get("/items/", { params });
 export const getStats = () => api.get("/items/stats/");

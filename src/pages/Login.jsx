@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { User, Lock, ChevronLeft, Eye, EyeOff } from "lucide-react";
+import { useGoogleLogin } from "@react-oauth/google";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-  const { login, token, loading } = useAuth();
+  const { login, loginGoogle, token, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [form, setForm] = useState({ username: "", password: "" });
@@ -33,6 +35,26 @@ const Login = () => {
       setError(err.response?.data?.detail || err.response?.data?.non_field_errors?.[0] || err.message || "Login failed.");
     }
   };
+
+  const handleGoogleSuccess = async (tokenResponse) => {
+    try {
+      // tokenResponse.access_token is the real OAuth2 access token
+      await loginGoogle(tokenResponse.access_token);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError("Google Login failed. Please try again.");
+    }
+  };
+
+  const handleGoogleError = () => {
+    setError("Google Login was unsuccessful.");
+  };
+
+
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: handleGoogleSuccess,
+    onError: handleGoogleError,
+  });
 
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)] items-center justify-center px-4 animate-fade-in relative">
@@ -110,6 +132,27 @@ const Login = () => {
               {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
+
+          <div className="relative my-8">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-border"></span>
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
+            </div>
+          </div>
+
+          <div className="flex justify-center">
+            <button
+              onClick={() => loginWithGoogle()}
+              className="flex items-center justify-center gap-3 w-full py-2.5 px-4 rounded-md border border-input bg-background hover:bg-accent hover:text-accent-foreground transition-colors font-medium shadow-sm"
+              type="button"
+            >
+              <FcGoogle size={20} />
+              <span>Sign in with Google</span>
+            </button>
+          </div>
+
 
           <p className="mt-8 text-center text-sm text-muted-foreground">
             Don't have an account? <Link to="/register" state={location.state} className="text-primary font-bold hover:underline transition-colors">Create account</Link>
